@@ -57,10 +57,10 @@ def monitor_stock():
             if count < 11:
                 if check_stock(driver):
                     break
-                delay = randint(10, 60)
+                delay = randint(300, 600)
                 print(f"⏳ Next check in {delay} seconds.")
                 # Check if the bot is running and Telegram push is enabled
-                send_telegram_message("⏳ Next check in {delay} seconds.")
+                send_telegram_message(f"⏳ Next check in {delay} seconds.")
                 time.sleep(delay)
                 count += 1
                 driver.refresh()
