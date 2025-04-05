@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 # Load environment variables
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
-URL = "https://store.steampowered.com/sale/steamdeckrefurbished"
+URL = "https://scaxcodes.github.io/steamdeck-dummy-page/"
 
 # Configure Selenium
 browser_options = Options()
