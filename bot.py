@@ -14,7 +14,9 @@ from datetime import datetime, timedelta
 # Load environment variables
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
-URL = "https://scaxcodes.github.io/steamdeck-dummy-page/"
+# Use test url for testing the telegram notification (has a Steam Deck in stock)
+TEST_URL = "https://scaxcodes.github.io/steamdeck-dummy-page/"
+URL = "https://store.steampowered.com/sale/steamdeckrefurbished"
 
 # Configure Selenium
 browser_options = Options()
@@ -85,9 +87,14 @@ def monitor_stock():
                     send_telegram_message(daily_message)
                     next_daily_ping = get_next_daily_ping_time()
                 
-                # Wait for a random delay between 5 and 10 minutes
-                delay = randint(300, 600)
+                # Determine delay: if available, wait 2 hours; otherwise, random 5-10 minutes
+                if steam_deck_available:
+                    delay = 7200  # 2 hours in seconds
+                else:
+                    delay = randint(300, 600)
+                    
                 print(f"⏳ Next check in {delay} seconds.")
+                send_telegram_message(f"⏳ Next check in {delay} seconds.")
                 time.sleep(delay)
                 count += 1
                 driver.refresh()
