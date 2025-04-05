@@ -94,7 +94,6 @@ def monitor_stock():
                     delay = randint(300, 600)
                     
                 print(f"⏳ Next check in {delay} seconds.")
-                send_telegram_message(f"⏳ Next check in {delay} seconds.")
                 time.sleep(delay)
                 count += 1
                 driver.refresh()
